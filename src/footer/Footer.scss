@@ -1,0 +1,21 @@
+.footer{
+  width:100%;
+
+  position: absolute;
+  bottom: 0;
+  left:0;
+  font-size: 0.28rem;
+  .list{
+    display: flex;
+    width:100%;
+    li{
+      flex: 1;
+      margin:.2rem 0;
+      text-align: center;
+    }
+    & li.active{
+      color:red;
+
+    }
+  }
+}

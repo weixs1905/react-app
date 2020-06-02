@@ -1,0 +1,15 @@
+.header{
+  width:100%;
+  font-size:0.4rem;
+  display: flex;
+  // justify-content: space-around;
+  padding: .4rem 0;
+  align-items: center;
+  p{
+    display: flex;
+    align-items: center;
+  }
+  .title{
+    margin:0 1.6rem 0 2.2rem;
+  }
+}
