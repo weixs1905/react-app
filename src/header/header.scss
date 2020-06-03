@@ -2,14 +2,18 @@
   width:100%;
   font-size:0.4rem;
   display: flex;
-  // justify-content: space-around;
-  padding: .4rem 0;
   align-items: center;
-  p{
-    display: flex;
-    align-items: center;
+  padding:0 0.3rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  .logo{
+    img{
+      width:1.12rem;
+      height:0.84rem;
+    }
   }
   .title{
-    margin:0 1.6rem 0 2.2rem;
+    font-size: 0.32rem;
+    margin-left: 0.3rem;
   }
+  
 }
