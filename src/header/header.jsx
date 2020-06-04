@@ -1,8 +1,10 @@
 import React,{Component} from 'react'
 import { Icon, Grid,Popover ,NavBar} from 'antd-mobile';
 import './header.scss'
+
 const Item = Popover.Item
-const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
+const myImg = require('../assets/img/nav-logo.png');
+// require('../assets/img/nav-logo.png')
 class Header extends Component{
   state ={
     visible:false,
@@ -12,9 +14,9 @@ class Header extends Component{
   render(){
     return(
       <div>
-        <div className='header'>
+        <div className='header' id='header'>
           <div className='logo'>
-            <img src="//cdn2.jianshu.io/asimov/src/assets/image/nav-logo.faf216af.png" alt=""/>
+            <img src={myImg} alt=""/>
           </div>
           <div className='title'>
             创作你的创作

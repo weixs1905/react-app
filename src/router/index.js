@@ -1,18 +1,19 @@
 import React,{Component} from 'react'
-import {BrowserRouter as Router,Route,Switch,} from 'react-router-dom'
-import {Redirect,} from 'react-router'
+import {HashRouter,Route,Switch,Redirect} from 'react-router-dom'
+// import {Redirect,} from 'react-router'
 import routes from './routes'
 import List from '../list/List'
+// let List = ()=> import('../list/List')
 export default class routers extends Component{
   render(){
     return (
-      <Router>
+      <HashRouter>
         <Switch>
           {/* <Route routes={routes}/> */}
-          <Route path='/list' component={List} exact />
-          <Redirect path='/' to='/list'/>
+          <Route path='/list' component={List} />
+          <Redirect exact from='/' to='/list'/>
         </Switch>
-      </Router>
+      </HashRouter>
     )
   }
 }

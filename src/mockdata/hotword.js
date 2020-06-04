@@ -19,5 +19,5 @@ let hotWord = [
   {id:18,txt:'远方'},
   {id:19,txt:'简书电影'},
 
-]
+]||[]
 export default hotWord
