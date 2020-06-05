@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
+import {getList} from '../api/index'
 import './index.scss'
 import hotWord from '../mockdata/hotword'
-import $ from 'jquery'
 const hot_num = 7//定义每次展示几个热词
 let hot_word = hotWord
 class List extends Component{
@@ -9,19 +9,33 @@ class List extends Component{
     hotWord_list:[],//最终页面中展示的数组
     tempList:[],//保存原热词数组中每次被截掉的元素
     isFrash:false,
-    articleList:[1,1,1,1,1,1,1,1]
+    articleList:[],
+    timer:null,
+    hasImg:'',//文章是否有预览图，1有2没有
   }
   componentWillMount(){
-    this.filterHotWord(hot_num)
+    this.filterHotWord(hot_num,1)
     this.getlist()
   }
-  componentDidMount(){
-    // let h_height = document.getElementById('header').offsetHeight
-    // document.getElementById('list').style.marginTop = h_height/50+'rem'
-    // console.log(h_height)
-  }
   //热词过滤，每次显示num个
-  filterHotWord=(num)=>{
+  filterHotWord=(num,type)=>{
+    let {timer} = this.state
+    if(type == 2){
+      //节流
+      if(timer) return;
+      this.setState({
+        isFrash:true,
+        timer:setTimeout(()=>{
+          this.setState({
+            isFrash:false
+          })
+          clearTimeout(timer)
+          this.setState({timer:null})
+          
+        },500)
+      })
+      
+    }
     let arr=[]
     if(hot_word.length>=num){
        arr = hot_word.slice(0,num)
@@ -33,7 +47,6 @@ class List extends Component{
       this.setState({
         tempList:this.state.tempList.concat(arr),
         hotWord_list:arr,
-        isFrash:true
       },function(){
         if(hot_word.length == 0){
           hot_word = this.state.tempList
@@ -42,26 +55,22 @@ class List extends Component{
           })
         }
       })
-      // this.setState({
-      //   isFrash:false
-      // })
   }
+  //获取文章列表
   getlist = ()=>{
-    $.ajax({
-           type : "GET",
-           url : 'https://www.easy-mock.com/mock/5ed8c2f0d4531151437ec49c/api/list', 
-           success : function(html){
-             console.log(html);
-          }
-      });
+    getList().then(res=>{
+      this.setState({
+        articleList:res.list
+      })
+    })
   }
   render(){
     return(
       <div className='list' id='list'>
         <div className='hot'>
           <p>热门专题</p>
-          <p onClick={()=>{this.filterHotWord(hot_num)}}>
-            <i className={`icon-refresh-line`}></i>
+          <p onClick={()=>{this.filterHotWord(hot_num,2)}}>
+            <i className={`icon-refresh-line ${this.state.isFrash?"refrash":null}`}></i>
             <span>换一换</span>
           </p>
         </div>
@@ -79,33 +88,38 @@ class List extends Component{
           {
             this.state.articleList.map(item =>{
               return(
-                <div className='item'>
+                <div key={item.id} className='item'>
                   <div className='left'>
-                    <div className='title'>工地上的红人-喜妹</div>
+              <div className='title'>{item.title}</div>
                     <div className='introduce'>
-                    成熟是什么？ 总有人觉得，成熟跟年龄正相关，一个人年龄越大，就会越成熟，什么都懂，也能好好做自己，与之相反，一个人...
+                    {item.content}
                     </div>
                     <div className='info'>
                       <p>
                         <i className='icon-zuanshi' style={{color:'#ea6f5a',marginRight:'0.1rem'}}></i>
-                        <span>33.9</span>
+                        <span>{item.stone}</span>
                       </p>
                       <p>
-                        <span>吃鱼的猫</span>
+                        <span>{item.author}</span>
                       </p>
                       <p>
-                        <i className='icon-liuyan' style={{color:'#b1b1b1',marginRight:'0.1rem'}}></i>
-                        <span>33.9</span>
+                        <i className='icon-liuyan' style={{color:'#b1b1b1',marginRight:'0.1rem',lineHeight:"0.38rem"}}></i>
+                        <span>{item.commont}</span>
                       </p>
                       <p>
                         <i className='icon-lujing' style={{color:'#b1b1b1',marginRight:'0.1rem'}}></i>
-                        <span>33</span>
+                        <span>{item.star}</span>
                       </p>
                     </div>
                   </div>
-                  <div className='right'>
-                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591279773930&di=95d2c163ed03f9037a617d87ce2e407a&imgtype=0&src=http%3A%2F%2Fgss0.baidu.com%2F9vo3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F55e736d12f2eb938ea5241a6d1628535e5dd6fa2.jpg" alt=""/>
-                  </div>
+                  {
+                    item.type == 1?
+                    (
+                      <div className='right'>
+                        <img src={item.img} alt=""/>
+                      </div>
+                    ):null
+                  }
                 </div>
               )
             })

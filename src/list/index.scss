@@ -1,5 +1,6 @@
 .list{
   // padding:0 .3rem;
+  margin-top: 0.96rem;
   .hot{
     // display: flex;
     overflow: hidden;
@@ -97,7 +98,8 @@
 
 
 
-  .refrash{
-    transform: rotate(180deg);
-  }
 }
+    .refrash{
+      transform: rotate(360deg);
+      transition: all 0.5s;
+    }

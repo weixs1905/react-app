@@ -4,16 +4,14 @@ import './header.scss'
 
 const Item = Popover.Item
 const myImg = require('../assets/img/nav-logo.png');
-// require('../assets/img/nav-logo.png')
 class Header extends Component{
   state ={
     visible:false,
     selected:''
   }
- 
   render(){
     return(
-      <div>
+      // <div>
         <div className='header' id='header'>
           <div className='logo'>
             <img src={myImg} alt=""/>
@@ -22,7 +20,7 @@ class Header extends Component{
             创作你的创作
           </div>
         </div>
-      </div>
+      // </div>
     )
   }
 }

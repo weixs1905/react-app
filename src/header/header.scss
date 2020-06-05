@@ -3,19 +3,22 @@
   font-size:0.4rem;
   display: flex;
   align-items: center;
-  padding:0 0.3rem;
+  padding:0.06rem 0.3rem;
   box-shadow: 0 2px 4px rgba(0,0,0,.1);
   background: #fff;
   margin-bottom: 0.06rem;
-  overflow: hidden;
-  // position: fixed;
+  // overflow: hidden;
+  position: fixed;
   left:0;
   top:0;
   z-index: 99;
+  // height:0.92rem;
   .logo{
+    overflow: hidden;
     img{
       width:1.12rem;
       height:0.84rem;
+      float: left;
     }
   }
   .title{
