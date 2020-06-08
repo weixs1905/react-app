@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
-import {getList} from '../api/index'
+import qs from 'qs'
+import {getList,detailInfo} from '../api/index'
 import './index.scss'
+import $ from 'jquery'
 import hotWord from '../mockdata/hotword'
 const hot_num = 7//定义每次展示几个热词
 let hot_word = hotWord
@@ -19,6 +21,8 @@ class List extends Component{
   }
   //热词过滤，每次显示num个
   filterHotWord=(num,type)=>{
+    // $('#list')[0].innerHTML = ''
+    console.log($('#list'))
     let {timer} = this.state
     if(type == 2){
       //节流
@@ -62,6 +66,9 @@ class List extends Component{
       this.setState({
         articleList:res.list
       })
+    })
+    detailInfo(qs.stringify({id:1})).then(res=>{
+
     })
   }
   render(){
