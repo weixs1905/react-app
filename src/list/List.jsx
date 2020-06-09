@@ -71,6 +71,12 @@ class List extends Component{
 
     })
   }
+  toDetail = (id)=>{
+    this.props.history.push({
+      pathname:`/detail/${id}`,
+      
+    })
+  }
   render(){
     return(
       <div className='list' id='list'>
@@ -95,9 +101,9 @@ class List extends Component{
           {
             this.state.articleList.map(item =>{
               return(
-                <div key={item.id} className='item'>
+                <div key={item.id} className='item' onClick={()=>this.toDetail(item.id)}>
                   <div className='left'>
-              <div className='title'>{item.title}</div>
+                    <div className='title'>{item.title}</div>
                     <div className='introduce'>
                     {item.content}
                     </div>
