@@ -72,10 +72,7 @@ class List extends Component{
     })
   }
   toDetail = (id)=>{
-    this.props.history.push({
-      pathname:`/detail/${id}`,
-      
-    })
+    this.props.history.push({pathname:`/detail/${id}`})
   }
   render(){
     return(
