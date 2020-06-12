@@ -21,7 +21,8 @@
     "sass": "^1.26.7",
     "sass-loader": "^8.0.2",
     "scss": "^0.2.4",
-    "scss-loader": "^0.0.1"
+    "scss-loader": "^0.0.1",
+    "serve": "^11.3.2"
   },
   "scripts": {
     "start": "react-app-rewired start",

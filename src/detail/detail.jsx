@@ -15,9 +15,9 @@ class Detail extends Component{
     })
   }
   componentDidMount(){
-    setTimeout(() => {
-      this.refs.div.style.width = 50+"%"
-    }, 1000);
+    // setTimeout(() => {
+    //   this.refs.div.style.width = 50+"%"
+    // }, 1000);
   }
   lookAll = ()=>{
     this.setState({
@@ -57,9 +57,9 @@ class Detail extends Component{
     return(
       
       <div className='detail' id='detail'>
-        <div className="progress">
+        {/* <div className="progress">
           <div ref='div'></div>
-        </div>
+        </div> */}
         <div className='title'>多发发</div>
         <div className='authorInfo'>
           <p>
