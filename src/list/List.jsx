@@ -67,9 +67,7 @@ class List extends Component{
         articleList:res.list
       })
     })
-    detailInfo(qs.stringify({id:1})).then(res=>{
-
-    })
+    
   }
   toDetail = (id)=>{
     this.props.history.push({pathname:`/detail/${id}`})
