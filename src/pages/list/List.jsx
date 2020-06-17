@@ -1,9 +1,9 @@
 import React,{Component} from 'react'
 import qs from 'qs'
-import {getList,detailInfo} from '../api/index'
+import {getList} from '../../api/index'
 import './index.scss'
 import $ from 'jquery'
-import hotWord from '../mockdata/hotword'
+import hotWord from '../../mockdata/hotword'
 const hot_num = 7//定义每次展示几个热词
 let hot_word = hotWord
 class List extends Component{

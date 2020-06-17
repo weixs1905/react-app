@@ -3,7 +3,7 @@ import { Icon, Grid,Popover ,NavBar} from 'antd-mobile';
 import './header.scss'
 
 const Item = Popover.Item
-const myImg = require('../assets/img/nav-logo.png');
+const myImg = require('../../assets/img/nav-logo.png');
 class Header extends Component{
   state ={
     visible:false,

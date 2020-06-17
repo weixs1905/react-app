@@ -1,13 +1,19 @@
-import App from '../App'
-import List from '../list/List'
-const routeConfig = [
-  { path: '/',
-    component: App,
-    indexRoute: { component: List },
-    childRoutes: [
-      { path: '/list', component: List },
-      
-    ]
-  }
+import list from '../pages/list/List.jsx'
+import detail from '../pages/detail/detail.jsx'
+
+let routes = [
+  {
+    path:'/list',
+    component:list
+  },
+  {
+    path:'/detail/:id',
+    component:detail
+  },
+  {
+    path:'/',
+    redirect:'/list'
+  },
+  
 ]
-export default routeConfig;
+export default routes

@@ -1,11 +1,11 @@
 import React,{Component} from 'react'
 import qs from 'qs'
-import {detailInfo} from '../api/index'
+import {detailInfo} from '../../api/index'
 import './detail.scss'
 class Detail extends Component{
   state={
     id:'',
-    logo:require('../assets/img/misc-logo.805143dd.png'),
+    logo:require('../../assets/img/misc-logo.805143dd.png'),
     lookAll:false,
     data:{},
     comment:[]
