@@ -7,9 +7,10 @@ import routes from './router/routes'
 class App extends Component{
  
   render() {
+    console.log(this.props)
     return(
       <div>
-        <Header/>
+        {/* <Header /> */}
         <HashRouter>
           <Router routes={routes}></Router>
         </HashRouter>

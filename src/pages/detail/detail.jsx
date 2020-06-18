@@ -12,34 +12,37 @@ class Detail extends Component{
    
   }
   componentWillMount(){
+    console.log(this.props)
     this.setState({
       id:this.props.match.params.id
     },function(){
       this.getData()
     })
   }
-  getData = ()=>{
-    let {id} = this.state
-    detailInfo(qs.stringify({id})).then(res=>{
-      this.setState({
-        data:res.detail
-      },function(){
-        let comment = this.state.data.comment.reverse()
-        this.setState({comment})
-
-      })
-    })
-  }
   componentDidMount(){
     // setTimeout(() => {
-    //   this.refs.div.style.width = 50+"%"
-    // }, 1000);
-  }
-  lookAll = ()=>{
-    this.setState({
-      lookAll:true
-    })
-  }
+      //   this.refs.div.style.width = 50+"%"
+      // }, 1000);
+    }
+    lookAll = ()=>{
+      this.setState({
+        lookAll:true
+      })
+    }
+    //获取文章详情
+    getData = ()=>{
+      let {id} = this.state
+      detailInfo(qs.stringify({id})).then(res=>{
+        this.setState({
+          data:res.detail
+        },function(){
+          let comment = this.state.data.comment.reverse()
+          this.setState({comment})
+  
+        })
+      })
+    }
+    //下载app
   download = ()=>{
     let u = navigator.userAgent, app = navigator.appVersion;
     let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
@@ -66,7 +69,13 @@ class Detail extends Component{
         window.location.href='https://apps.apple.com/cn/app/%E7%AE%80%E4%B9%A6-%E5%88%9B%E4%BD%9C%E4%BD%A0%E7%9A%84%E5%88%9B%E4%BD%9C/id888237539';
     }
   }
-
+  //写评论
+  createComment = ()=>{
+    if(React.cookie.get('token') == ''||React.cookie.get('token') == 'TOKEN'){
+      return this.props.history.push('/login')
+    }
+    
+  }
   
   
   render(){
@@ -131,7 +140,7 @@ class Detail extends Component{
           <div className='comment'>
             <div className='top'>
               <span>精彩评论</span>
-              <span><i className='icon-pinglun' style={{marginRight:'.02rem'}}></i>写评论</span>
+              <span onClick={this.createComment}><i className='icon-pinglun' style={{marginRight:'.02rem'}}></i>写评论</span>
             </div>
             <div className='bottom'>
               {

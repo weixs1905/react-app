@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import qs from 'qs'
-import {getList} from '../../api/index'
+import {getList,login} from '../../api/index'
 import './index.scss'
 import $ from 'jquery'
 import hotWord from '../../mockdata/hotword'
@@ -18,6 +18,9 @@ class List extends Component{
   componentWillMount(){
     this.filterHotWord(hot_num,1)
     this.getlist()
+    login(qs.stringify({username:'admin',password:'123456'})).then(res=>{
+
+    })
   }
   //热词过滤，每次显示num个
   filterHotWord=(num,type)=>{
